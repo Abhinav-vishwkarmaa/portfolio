@@ -31,72 +31,72 @@ const Counter = () => {
 
 const SyntaxHighlighter = ({ code, language }) => {
   const highlightWords = (text) => {
-      // Split by delimiters but keep them
-      return text.split(/([a-zA-Z0-9_$]+|"[^"]*"|'[^']*'|`[^`]*`|[(){}[\],.;:])/g).map((part, i) => {
-          if (!part) return null;
-          
-          // Strings
-          if (part.startsWith('"') || part.startsWith("'") || part.startsWith('`')) {
-              return <span key={i} className="text-green-400">{part}</span>;
-          }
-          // Keywords
-          if (['import', 'from', 'const', 'let', 'var', 'return', 'if', 'else', 'async', 'await', 'try', 'catch', 'function', 'class', 'interface', 'export', 'default', 'type'].includes(part)) {
-              return <span key={i} className="text-purple-400 font-bold">{part}</span>;
-          }
-          // Types/Classes
-          if (['React', 'useState', 'useEffect', 'motion', 'AnimatePresence', 'express', 'jwt', 'mongoose', 'mysql', 'Request', 'Response', 'Promise', 'void', 'string', 'number'].includes(part)) {
-              return <span key={i} className="text-yellow-400">{part}</span>;
-          }
-           // Booleans
-           if (['true', 'false', 'null', 'undefined'].includes(part)) {
-              return <span key={i} className="text-orange-400">{part}</span>;
-          }
-          // Numbers
-          if (!isNaN(parseFloat(part)) && isFinite(part)) {
-               return <span key={i} className="text-blue-400">{part}</span>;
-          }
-          // Functions (heuristic: followed by () in next token - hard to do in simple map, so just color common ones)
-          if (['log', 'error', 'connect', 'json', 'status', 'send', 'post', 'get', 'use'].includes(part)) {
-              return <span key={i} className="text-blue-300">{part}</span>;
-          }
+    // Split by delimiters but keep them
+    return text.split(/([a-zA-Z0-9_$]+|"[^"]*"|'[^']*'|`[^`]*`|[(){}[\],.;:])/g).map((part, i) => {
+      if (!part) return null;
 
-          return <span key={i} className="text-gray-200">{part}</span>;
-      });
+      // Strings
+      if (part.startsWith('"') || part.startsWith("'") || part.startsWith('`')) {
+        return <span key={i} className="text-green-400">{part}</span>;
+      }
+      // Keywords
+      if (['import', 'from', 'const', 'let', 'var', 'return', 'if', 'else', 'async', 'await', 'try', 'catch', 'function', 'class', 'interface', 'export', 'default', 'type'].includes(part)) {
+        return <span key={i} className="text-purple-400 font-bold">{part}</span>;
+      }
+      // Types/Classes
+      if (['React', 'useState', 'useEffect', 'motion', 'AnimatePresence', 'express', 'jwt', 'mongoose', 'mysql', 'Request', 'Response', 'Promise', 'void', 'string', 'number'].includes(part)) {
+        return <span key={i} className="text-yellow-400">{part}</span>;
+      }
+      // Booleans
+      if (['true', 'false', 'null', 'undefined'].includes(part)) {
+        return <span key={i} className="text-orange-400">{part}</span>;
+      }
+      // Numbers
+      if (!isNaN(parseFloat(part)) && isFinite(part)) {
+        return <span key={i} className="text-blue-400">{part}</span>;
+      }
+      // Functions (heuristic: followed by () in next token - hard to do in simple map, so just color common ones)
+      if (['log', 'error', 'connect', 'json', 'status', 'send', 'post', 'get', 'use'].includes(part)) {
+        return <span key={i} className="text-blue-300">{part}</span>;
+      }
+
+      return <span key={i} className="text-gray-200">{part}</span>;
+    });
   };
 
   // Improved highlighting logic that handles full lines for comments
   const renderHighlighted = () => {
     const lines = code.split('\n');
     return lines.map((line, lineIndex) => {
-        // Check for comment
-        const commentIndex = line.indexOf('//');
-        if (commentIndex !== -1) {
-            const codePart = line.substring(0, commentIndex);
-            const commentPart = line.substring(commentIndex);
-            return (
-                <div key={lineIndex} className="table-row">
-                    <span className="table-cell text-right pr-4 text-gray-600 select-none w-8 text-xs">{lineIndex + 1}</span>
-                    <span className="table-cell whitespace-pre">
-                        {highlightWords(codePart)}
-                        <span className="text-gray-500 italic">{commentPart}</span>
-                    </span>
-                </div>
-            );
-        }
+      // Check for comment
+      const commentIndex = line.indexOf('//');
+      if (commentIndex !== -1) {
+        const codePart = line.substring(0, commentIndex);
+        const commentPart = line.substring(commentIndex);
         return (
-            <div key={lineIndex} className="table-row">
-                <span className="table-cell text-right pr-4 text-gray-600 select-none w-8 text-xs">{lineIndex + 1}</span>
-                <span className="table-cell whitespace-pre">{highlightWords(line)}</span>
-            </div>
+          <div key={lineIndex} className="table-row">
+            <span className="table-cell text-right pr-4 text-gray-600 select-none w-8 text-xs">{lineIndex + 1}</span>
+            <span className="table-cell whitespace-pre">
+              {highlightWords(codePart)}
+              <span className="text-gray-500 italic">{commentPart}</span>
+            </span>
+          </div>
         );
+      }
+      return (
+        <div key={lineIndex} className="table-row">
+          <span className="table-cell text-right pr-4 text-gray-600 select-none w-8 text-xs">{lineIndex + 1}</span>
+          <span className="table-cell whitespace-pre">{highlightWords(line)}</span>
+        </div>
+      );
     });
   };
 
   return (
     <div className="font-mono text-sm leading-relaxed w-full">
-        <div className="table w-full">
-            {renderHighlighted()}
-        </div>
+      <div className="table w-full">
+        {renderHighlighted()}
+      </div>
     </div>
   );
 };
@@ -105,165 +105,104 @@ const CodeEditor = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [showPreview, setShowPreview] = useState(false);
   const scrollRef = useRef(null);
-  
+
   const codeSnippets = [
     {
-      name: 'Counter.tsx',
-      language: 'tsx',
-      hasPreview: true,
-      content: `import React, { useState } from 'react';
+      name: 'shortener.go',
+      language: 'go',
+      content: `package service
 
-const Counter = () => {
-  const [count, setCount] = useState(0);
+import (
+	"context"
+	"github.com/redis/go-redis/v9"
+)
 
-  return (
-    <div className="counter-container">
-      <h3>Interactive Counter</h3>
-      <div className="count-display">
-        {count}
-      </div>
-      <div className="button-group">
-        <button onClick={() => setCount(c => c - 1)}>
-          - Decrement
-        </button>
-        <button onClick={() => setCount(c => c + 1)}>
-          + Increment
-        </button>
-      </div>
-    </div>
-  );
-};`
-    },
-    {
-      name: 'Hero.tsx',
-      language: 'tsx',
-      content: `import React from 'react';
-
-interface HeroProps {
-  name: string;
-  role: string;
+type URLShortener struct {
+	repo  Repository
+	cache *redis.Client
 }
 
-export const Hero: React.FC<HeroProps> = ({ name, role }) => {
-  return (
-    <section className="hero-section">
-      <h1 className="hero-title">{name}</h1>
-      <p className="hero-subtitle">{role}</p>
-      <div className="tech-stack">
-        <span className="tech-badge">Node.js</span>
-        <span className="tech-badge">Express.js</span>
-        <span className="tech-badge">MongoDB</span>
-        <span className="tech-badge">MySQL</span>
-      </div>
-    </section>
-  );
-};`
+func (s *URLShortener) GetRedirect(ctx context.Context, code string) (string, error) {
+	// Try cache first
+	url, err := s.cache.Get(ctx, "url:"+code).Result()
+	if err == nil {
+		return url, nil
+	}
+
+	// Fallback to DB
+	originalURL, err := s.repo.FindByCode(ctx, code)
+	if err != nil {
+		return "", err
+	}
+
+	// Set cache asynchronously
+	go s.cache.Set(ctx, "url:"+code, originalURL, 0)
+	
+	return originalURL, nil}`
     },
     {
-      name: 'api.ts',
+      name: 'maritime_api.ts',
       language: 'ts',
-      content: `import express, { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import { connectDB } from './database';
+      content: `import { Router } from 'express';
+import { SurveyController } from './controllers';
+import { QueueManager } from './queue';
 
-interface OrderRequest {
-  items: Array<{
-    productId: string;
-    quantity: number;
-  }>;
-  paymentMethod: 'UPI' | 'Paytm Wallet';
-}
+export const maritimeRouter = Router();
 
-export const groceryApi = express.Router();
+maritimeRouter.post('/vessels/:id/submit-survey', async (req, res) => {
+  const { id } = req.params;
+  const surveyData = req.body;
 
-groceryApi.post('/orders', async (req: Request, res: Response) => {
-  try {
-    const { items, paymentMethod } = req.body as OrderRequest;
-    
-    const order = await createGroceryOrder({
-      items,
-      paymentMethod,
-      userId: req.user.id
-    });
-    
-    const paymentResult = await processPaymentWithPaytm({
-      orderId: order.id,
-      amount: order.total,
-      paymentMethod
-    });
-    
-    if (paymentResult.success) {
-      await verifyOtpForOrder(order.id);
-      await generateInvoicePDF(order.id);
-      
-      res.json({ success: true, order });
-    } else {
-      res.status(400).json({ error: 'Payment failed' });
-    }
-  } catch (error) {
-    console.error('Order creation error:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+  // Process survey logic
+  const survey = await SurveyController.process(id, surveyData);
+
+  // Queue PDF generation background job
+  await QueueManager.addJob('generate-certificate', {
+    surveyId: survey.id,
+    vesselId: id,
+    timestamp: new Date().toISOString()
+  });
+
+  res.status(200).json({ 
+    success: true, 
+    message: 'Survey submitted. Certificate generating.' 
+  });
 });`
     },
     {
-      name: 'database.ts',
+      name: 'postgres.ts',
       language: 'ts',
-      content: `import mongoose from 'mongoose';
-import mysql from 'mysql2/promise';
+      content: `import { Pool } from 'pg';
 
-const MONGODB_URI = process.env.MONGODB_URI!;
-const MYSQL_CONFIG = {
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
+const pool = new Pool();
+
+export const query = async (text: string, params: any[]) => {
+  const start = Date.now();
+  try {
+    const res = await pool.query(text, params);
+    const duration = Date.now() - start;
+    console.log('executed query', { text, duration, rows: res.rowCount });
+    return res;
+  } catch (err) {
+    console.error('query error', err);
+    throw err;
+  }
 };
 
-export class DatabaseManager {
-  private static instance: DatabaseManager;
-  private mongoConnection: typeof mongoose;
-  private mysqlConnection: mysql.Connection;
-
-  private constructor() {}
-
-  public static getInstance(): DatabaseManager {
-    if (!DatabaseManager.instance) {
-      DatabaseManager.instance = new DatabaseManager();
-    }
-    return DatabaseManager.instance;
-  }
-
-  async connect(): Promise<void> {
-    try {
-      // MongoDB Connection
-      this.mongoConnection = await mongoose.connect(MONGODB_URI);
-      console.log('✅ MongoDB connected');
-      
-      // MySQL Connection  
-      this.mysqlConnection = await mysql.createConnection(MYSQL_CONFIG);
-      console.log('✅ MySQL connected');
-      
-    } catch (error) {
-      console.error('❌ Database connection failed:', error);
-      throw error;
-    }
-  }
-
-  async close(): Promise<void> {
-    await this.mongoConnection.disconnect();
-    await this.mysqlConnection.end();
-  }
-}
-
-export const dbManager = DatabaseManager.getInstance();`
+// composite index optimization helper
+export const optimizeTable = async () => {
+  await query(\`
+    CREATE INDEX IF NOT EXISTS idx_tenant_created 
+    ON clicks (tenant_id, created_at DESC)
+  \`, []);
+};`
     }
   ];
 
   // Nuclear fast speed: 1ms
   const { displayText, restart } = useTypewriter(
     codeSnippets[activeTab].content,
-    1, 
+    1,
     100
   );
 
@@ -345,28 +284,26 @@ export const dbManager = DatabaseManager.getInstance();`
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
         </div>
-        
+
         {codeSnippets[activeTab].hasPreview && (
           <div className="flex bg-gray-800 rounded-lg p-1 border border-gray-700">
             <button
               onClick={() => setShowPreview(false)}
-              className={`px-3 py-1 text-xs rounded-md transition-colors ${
-                !showPreview ? 'bg-blue-500/20 text-blue-400' : 'text-gray-400 hover:text-gray-300'
-              }`}
+              className={`px-3 py-1 text-xs rounded-md transition-colors ${!showPreview ? 'bg-blue-500/20 text-blue-400' : 'text-gray-400 hover:text-gray-300'
+                }`}
             >
               Code
             </button>
             <button
               onClick={() => setShowPreview(true)}
-              className={`px-3 py-1 text-xs rounded-md transition-colors ${
-                showPreview ? 'bg-green-500/20 text-green-400' : 'text-gray-400 hover:text-gray-300'
-              }`}
+              className={`px-3 py-1 text-xs rounded-md transition-colors ${showPreview ? 'bg-green-500/20 text-green-400' : 'text-gray-400 hover:text-gray-300'
+                }`}
             >
               Preview
             </button>
           </div>
         )}
-        
+
         <div className="text-sm text-gray-400 font-mono">
           {activeTab + 1} / {codeSnippets.length}
         </div>
@@ -377,11 +314,10 @@ export const dbManager = DatabaseManager.getInstance();`
         {codeSnippets.map((tab, index) => (
           <motion.button
             key={tab.name}
-            className={`px-4 py-3 text-sm font-mono transition-all duration-300 whitespace-nowrap ${
-              activeTab === index
+            className={`px-4 py-3 text-sm font-mono transition-all duration-300 whitespace-nowrap ${activeTab === index
                 ? 'tab-active text-white bg-white/5'
                 : 'tab-inactive text-gray-400 hover:text-gray-300'
-            }`}
+              }`}
             onClick={() => setActiveTab(index)}
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.98 }}
@@ -419,9 +355,9 @@ export const dbManager = DatabaseManager.getInstance();`
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <SyntaxHighlighter 
-                code={displayText} 
-                language={codeSnippets[activeTab].language} 
+              <SyntaxHighlighter
+                code={displayText}
+                language={codeSnippets[activeTab].language}
               />
             </motion.div>
           )}

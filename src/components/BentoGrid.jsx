@@ -112,11 +112,11 @@ const BentoItem = ({ item, index, totalItems, variants, className, loading }) =>
       animate="visible"
       exit="hidden"
       onMouseMove={handleMouseMove}
-      whileHover={{ 
+      whileHover={{
         y: loading ? 0 : -4,
         transition: { duration: 0.2 }
       }}
-      transition={{ 
+      transition={{
         delay: index * 0.1,
         type: "spring",
         stiffness: 300,
@@ -150,7 +150,7 @@ const BentoItem = ({ item, index, totalItems, variants, className, loading }) =>
           `
         }}
       />
-      
+
       {/* Custom Graphic Background - Always visible */}
       {renderGraphic()}
 
@@ -166,7 +166,7 @@ const BentoItem = ({ item, index, totalItems, variants, className, loading }) =>
               )}
             </div>
           </div>
-          
+
           {loading ? (
             <div className="space-y-3">
               <div className="h-6 w-1/2 bg-white/10 rounded animate-pulse" />
@@ -181,14 +181,14 @@ const BentoItem = ({ item, index, totalItems, variants, className, loading }) =>
               <h3 className="font-bold text-white mb-2 text-lg group-hover:text-blue-300 transition-colors">
                 {item.title}
               </h3>
-              
+
               <p className="text-sm text-gray-300 leading-relaxed opacity-90">
                 {item.description}
               </p>
             </>
           )}
         </div>
-        
+
         <div className="flex flex-wrap gap-2 mt-4">
           {loading ? (
             <>
@@ -198,7 +198,7 @@ const BentoItem = ({ item, index, totalItems, variants, className, loading }) =>
             </>
           ) : (
             item.skills.slice(0, 3).map((skill, skillIndex) => (
-              <span 
+              <span
                 key={skillIndex}
                 className="px-2 py-1 bg-blue-500/10 text-blue-300 text-xs border border-blue-500/20 rounded-md"
               >
@@ -218,44 +218,44 @@ const BentoGrid = () => {
   const bentoItems = [
     {
       title: "System Architecture",
-      description: "Designing scalable backend systems, secure APIs, and robust database schemas.",
-      icon: "🎨",
-      skills: ["Microservices", "MVC Architecture", "Schema Design"],
+      description: "Designing scalable systems using Clean Architecture and microservices patterns.",
+      icon: "🏗️",
+      skills: ["Clean Architecture", "Microservices", "Scalability"],
       className: "md:col-span-1 lg:col-span-2"
     },
     {
-      title: "Backend Engineering", 
-      description: "Building high-performance server-side logic with Node.js, Express.js, and Python.",
+      title: "Backend Engineering",
+      description: "Building high-concurrency server logic with Go (Golang) and Node.js.",
       icon: "⚡",
-      skills: ["Node.js", "Express.js", "Python", "REST APIs"],
+      skills: ["Go (Golang)", "Node.js", "Python", "BullMQ"],
       className: "md:col-span-2 lg:col-span-2"
     },
     {
       title: "API Documentation",
-      description: "Creating clear, detailed API documentation and integration guides for developers.",
-      icon: "✍️", 
-      skills: ["Postman", "Swagger", "Technical Writing"],
+      description: "Automating OpenAPI/Swagger workflows for seamless frontend-backend integration.",
+      icon: "✍️",
+      skills: ["Swagger", "OpenAPI", "Postman"],
       className: "md:col-span-1 lg:col-span-1 lg:row-span-2"
     },
     {
-      title: "Security & Optimization",
-      description: "Implementing JWT authentication, RBAC, and optimizing database queries for performance.",
+      title: "Performance & Scaling",
+      description: "Optimizing database queries and implementing multi-layer caching with Redis.",
       icon: "🧪",
-      skills: ["JWT Auth", "RBAC", "Query Optimization"],
+      skills: ["Query Tuning", "Redis Caching", "Indexing"],
       className: "md:col-span-2 lg:col-span-1"
     },
     {
-      title: "Database & Payments",
-      description: "Managing MongoDB/MySQL databases and integrating secure payment gateways like Razorpay.",
-      icon: "🚀",
-      skills: ["MongoDB", "MySQL", "Razorpay", "Paytm"],
+      title: "Database & Integrity",
+      description: "Managing PostgreSQL/MySQL with focus on data integrity and ACID compliance.",
+      icon: "🛡️",
+      skills: ["PostgreSQL", "MySQL", "ACID", "Idempotency"],
       className: "md:col-span-2 lg:col-span-2"
     },
     {
       title: "Cloud & DevOps",
-      description: "Deploying applications to AWS EC2/S3, managing Linux servers, and setting up CI/CD pipelines.",
+      description: "Orchestrating deployments with Docker, GitHub Actions, and AWS infrastructure.",
       icon: "🌐",
-      skills: ["AWS", "Docker", "Nginx", "Linux"],
+      skills: ["Docker", "GitHub Actions", "AWS", "Nginx"],
       className: "md:col-span-1 lg:col-span-3"
     }
   ];
@@ -277,9 +277,9 @@ const BentoGrid = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[minmax(14rem,auto)]">
       <AnimatePresence mode="wait">
         {bentoItems.map((item, index) => (
-          <BentoItem 
-            key={item.title} 
-            item={item} 
+          <BentoItem
+            key={item.title}
+            item={item}
             index={index}
             totalItems={bentoItems.length}
             variants={itemVariants}
