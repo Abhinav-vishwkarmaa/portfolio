@@ -34,7 +34,7 @@
 
 @layer components {
   .section-container {
-    @apply py-24 px-6 md:px-12 max-w-7xl mx-auto;
+    @apply py-24 px-6 md:px-16 max-w-[1600px] mx-auto;
   }
 
   .card-base {
