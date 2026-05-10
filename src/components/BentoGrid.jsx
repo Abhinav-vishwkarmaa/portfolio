@@ -1,92 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const BentoGrid = () => {
-  const [loaded, setLoaded] = useState(false);
-
   const bentoItems = [
     {
-      title: "System Architecture",
-      description: "Designing scalable systems using Clean Architecture and microservices patterns.",
-      icon: "🏗️",
-      skills: ["Clean Architecture", "Microservices", "Scalability"],
-      className: "md:col-span-1 lg:col-span-2"
+      title: "DISTRIBUTED_MESSAGING",
+      description: "Architecting high-volume Kafka clusters with Zookeeper-less KRaft mode for event orchestration.",
+      icon: "🛰️",
+      code: "KAFKA_3.8_NODE",
+      className: "md:col-span-2 lg:col-span-2 bg-gradient-to-br from-accent-primary/5 to-transparent",
+      tags: ["PUB/SUB", "PARTITIONS", "RETENTION"]
     },
     {
-      title: "Backend Engineering",
-      description: "Building high-concurrency server logic with Go (Golang) and Node.js.",
-      icon: "⚡",
-      skills: ["Go (Golang)", "Node.js", "Python", "BullMQ"],
-      className: "md:col-span-2 lg:col-span-2"
+      title: "OBSERVABILITY",
+      description: "Centralized logging using ELK Stack. Custom Logstash pipelines for structured telemetry.",
+      icon: "📊",
+      code: "ELK_STACK_V8",
+      className: "md:col-span-1 lg:col-span-2",
+      tags: ["ELASTIC", "KIBANA", "APM"]
     },
     {
-      title: "API Documentation",
-      description: "Automating OpenAPI/Swagger workflows for seamless frontend-backend integration.",
-      icon: "✍️",
-      skills: ["Swagger", "OpenAPI", "Postman"],
-      className: "md:col-span-1 lg:col-span-1 lg:row-span-2"
+      title: "ASYNC_WORKERS",
+      description: "Non-blocking background processing via Redis-backed BullMQ clusters.",
+      icon: "⚙️",
+      code: "REDIS_CORE",
+      className: "md:col-span-1 lg:col-span-1 lg:row-span-2",
+      tags: ["BULLMQ", "STREAMS"]
     },
     {
-      title: "Performance & Scaling",
-      description: "Optimizing database queries and implementing multi-layer caching with Redis.",
-      icon: "🧪",
-      skills: ["Query Tuning", "Redis Caching", "Indexing"],
-      className: "md:col-span-2 lg:col-span-1"
+      title: "SECURE_STORAGE",
+      description: "Immutable document vaults on AWS S3 with AES-256 server-side encryption.",
+      icon: "🔒",
+      code: "AWS_S3_VAULT",
+      className: "md:col-span-2 lg:col-span-3",
+      tags: ["KMS", "IAM", "PRESIGNED"]
     },
     {
-      title: "Database & Integrity",
-      description: "Managing PostgreSQL/MySQL with focus on data integrity and ACID compliance.",
-      icon: "🛡️",
-      skills: ["PostgreSQL", "MySQL", "ACID", "Idempotency"],
-      className: "md:col-span-2 lg:col-span-2"
-    },
-    {
-      title: "Cloud & DevOps",
-      description: "Orchestrating deployments with Docker, GitHub Actions, and AWS infrastructure.",
+      title: "API_GATEWAY",
+      description: "High-performance Nginx reverse proxies with rate limiting and DDoS protection.",
       icon: "🌐",
-      skills: ["Docker", "GitHub Actions", "AWS", "Nginx"],
-      className: "md:col-span-1 lg:col-span-3"
+      code: "NGINX_PROD",
+      className: "md:col-span-1 lg:col-span-1",
+      tags: ["REVERSE_PROXY", "SSL"]
     }
   ];
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoaded(true);
-    }, 800);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[minmax(12rem,auto)]">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[minmax(14rem,auto)]">
       {bentoItems.map((item, index) => (
         <motion.div
           key={item.title}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.05 }}
-          className={`card-base p-6 flex flex-col justify-between hover:border-accent-primary/50 group ${item.className}`}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ y: -8 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 300, damping: 25, delay: index * 0.05 }}
+          className={`cyber-card p-10 group flex flex-col justify-between ${item.className} border-l-4`}
+          style={{ borderLeftColor: index % 2 === 0 ? 'var(--accent-primary)' : 'var(--accent-secondary)' }}
         >
+          <div className="absolute top-2 left-10 log-text opacity-10 text-[8px] uppercase tracking-widest pointer-events-none">Diagnostic_Node_{index + 102}</div>
+          
           <div>
-            <div className="text-2xl mb-4 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
-              {item.icon}
+            <div className="flex justify-between items-start mb-8">
+              <div className="space-y-1">
+                <span className="log-text text-accent-primary block">{item.code}</span>
+                <div className="h-0.5 w-8 bg-accent-primary/30" />
+              </div>
+              <div className="text-3xl opacity-20 group-hover:opacity-100 group-hover:text-accent-primary transition-all duration-500">{item.icon}</div>
             </div>
-            <h3 className="font-bold text-text-primary text-sm mb-2 uppercase tracking-wide">
+            
+            <h3 className="text-2xl font-bold mb-6 tracking-tighter uppercase group-hover:tracking-widest transition-all duration-500">
               {item.title}
             </h3>
-            <p className="text-xs text-text-secondary leading-relaxed line-clamp-3">
+            <p className="text-sm text-text-secondary font-mono leading-relaxed group-hover:text-text-primary transition-colors mb-8 opacity-80">
               {item.description}
             </p>
           </div>
-          <div className="flex flex-wrap gap-2 mt-4">
-            {item.skills.map((skill, skillIndex) => (
-              <span
-                key={skillIndex}
-                className="px-2 py-0.5 bg-background text-[10px] font-mono text-text-secondary border border-border-subtle rounded uppercase"
-              >
-                {skill}
+
+          <div className="flex flex-wrap gap-3">
+            {item.tags.map(tag => (
+              <span key={tag} className="text-[9px] font-mono border border-white/10 px-3 py-1 rounded-full opacity-60 group-hover:opacity-100 group-hover:border-accent-primary/40 transition-all">
+                {tag}
               </span>
             ))}
           </div>
+
+          {/* Industrial Corner Decors */}
+          <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-accent-primary/10 group-hover:border-accent-primary transition-colors" />
+          <div className="absolute bottom-4 right-4 log-text text-[8px] opacity-0 group-hover:opacity-20 transition-opacity">0x{Math.random().toString(16).slice(2, 6).toUpperCase()}</div>
         </motion.div>
       ))}
     </div>

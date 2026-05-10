@@ -1,194 +1,88 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTypewriter } from '../hooks/useTypewriter';
-
-const SyntaxHighlighter = ({ code, language }) => {
-  const highlightWords = (text) => {
-    return text.split(/([a-zA-Z0-9_$]+|"[^"]*"|'[^']*'|`[^`]*`|[(){}[\]\.,.;:])/g).map((part, i) => {
-      if (!part) return null;
-
-      if (part.startsWith('"') || part.startsWith("'") || part.startsWith('`')) {
-        return <span key={i} className="text-accent-secondary">{part}</span>;
-      }
-      if (['import', 'from', 'const', 'let', 'var', 'return', 'if', 'else', 'async', 'await', 'try', 'catch', 'function', 'class', 'export', 'default', 'package', 'type', 'func', 'struct'].includes(part)) {
-        return <span key={i} className="text-accent-primary font-medium">{part}</span>;
-      }
-      if (!isNaN(parseFloat(part)) && isFinite(part)) {
-        return <span key={i} className="text-accent-primary">{part}</span>;
-      }
-      return <span key={i} className="text-text-primary">{part}</span>;
-    });
-  };
-
-  const renderHighlighted = () => {
-    const lines = code.split('\n');
-    return lines.map((line, lineIndex) => {
-      const commentIndex = line.indexOf('//');
-      if (commentIndex !== -1) {
-        const codePart = line.substring(0, commentIndex);
-        const commentPart = line.substring(commentIndex);
-        return (
-          <div key={lineIndex} className="table-row">
-            <span className="table-cell text-right pr-4 text-text-secondary select-none w-8 text-xs opacity-30">{lineIndex + 1}</span>
-            <span className="table-cell whitespace-pre">
-              {highlightWords(codePart)}
-              <span className="text-text-secondary italic opacity-50">{commentPart}</span>
-            </span>
-          </div>
-        );
-      }
-      return (
-        <div key={lineIndex} className="table-row">
-          <span className="table-cell text-right pr-4 text-text-secondary select-none w-8 text-xs opacity-30">{lineIndex + 1}</span>
-          <span className="table-cell whitespace-pre">{highlightWords(line)}</span>
-        </div>
-      );
-    });
-  };
-
-  return (
-    <div className="font-mono text-[13px] leading-relaxed w-full">
-      <div className="table w-full">
-        {renderHighlighted()}
-      </div>
-    </div>
-  );
-};
 
 const CodeEditor = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const scrollRef = useRef(null);
 
-  const codeSnippets = [
+  const snippets = [
     {
-      name: 'shortener.go',
-      language: 'go',
-      content: `package service
+      name: 'INGESTION_SVC.TS',
+      content: `// CLUSTER_NODE_01 // INGESTION_PROCESS
+const producer = new Kafka.Producer();
 
-import (
-	"context"
-	"github.com/redis/go-redis/v9"
-)
+async function handlePayload(event: Event) {
+  const { id, type, ts } = event;
+  
+  // DEDUPLICATION_LAYER
+  const isDuplicate = await redis.setnx(\`click:\${id}\`, ts);
+  if (!isDuplicate) return dropEvent(id);
 
-type URLShortener struct {
-	repo  Repository
-	cache *redis.Client
-}
-
-func (s *URLShortener) GetRedirect(ctx context.Context, code string) (string, error) {
-	// Try cache first
-	url, err := s.cache.Get(ctx, "url:"+code).Result()
-	if err == nil {
-		return url, nil
-	}
-
-	// Fallback to DB
-	originalURL, err := s.repo.FindByCode(ctx, code)
-	if err != nil {
-		return "", err
-	}
-
-	// Set cache asynchronously
-	go s.cache.Set(ctx, "url:"+code, originalURL, 0)
-	
-	return originalURL, nil}`
+  // KAFKA_STREAM_EMIT
+  await producer.send('RAW_INGRESS', event);
+  
+  return { status: 'EMITTED', latency: Date.now() - ts };
+}`
     },
     {
-      name: 'maritime_api.ts',
-      language: 'ts',
-      content: `import { Router } from 'express';
-import { SurveyController } from './controllers';
-import { QueueManager } from './queue';
-
-export const maritimeRouter = Router();
-
-maritimeRouter.post('/vessels/:id/submit-survey', async (req, res) => {
-  const { id } = req.params;
-  const surveyData = req.body;
-
-  // Process survey logic
-  const survey = await SurveyController.process(id, surveyData);
-
-  // Queue PDF generation background job
-  await QueueManager.addJob('generate-certificate', {
-    surveyId: survey.id,
-    vesselId: id,
-    timestamp: new Date().toISOString()
-  });
-
-  res.status(200).json({ 
-    success: true, 
-    message: 'Survey submitted.' 
-  });
-});`
+      name: 'OBSERVABILITY.LOG',
+      content: `[2026-05-10 23:28:01] INFO: Logstash Pipeline Started
+[2026-05-10 23:28:02] DEBUG: Connecting to Elasticsearch...
+[2026-05-10 23:28:05] WARN: Higher Latency detected on Node_04
+[2026-05-10 23:28:06] INFO: Kafka Consumer Group rebalanced
+[2026-05-10 23:28:10] OK: Throughput stabilized at 8.2k RPM
+[2026-05-10 23:28:12] INFO: Periodic health check passed
+[2026-05-10 23:28:15] METRIC: EventLoopLag < 5ms
+[2026-05-10 23:28:18] INFO: Garbage collection sweep completed`
     }
   ];
 
-  const { displayText } = useTypewriter(
-    codeSnippets[activeTab].content,
-    1,
-    100
-  );
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTab((prev) => (prev + 1) % codeSnippets.length);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, [codeSnippets.length]);
-
   return (
-    <div className="bg-[#0d1117] border border-border-subtle rounded-md overflow-hidden shadow-2xl">
-      {/* Editor Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-[#161b22] border-b border-border-subtle">
-        <div className="flex space-x-1.5 leading-none">
-          <div className="w-2.5 h-2.5 rounded-full bg-border-subtle" />
-          <div className="w-2.5 h-2.5 rounded-full bg-border-subtle" />
-          <div className="w-2.5 h-2.5 rounded-full bg-border-subtle" />
-        </div>
-        <div className="text-[10px] text-text-secondary font-mono uppercase tracking-widest bg-background px-2 py-0.5 rounded border border-border-subtle">
-          {codeSnippets[activeTab].name}
-        </div>
-        <div className="text-[10px] text-text-secondary font-mono">
-          {activeTab + 1} / {codeSnippets.length}
-        </div>
-      </div>
-
-      {/* Tabs */}
-      <div className="flex bg-[#161b22]/50">
-        {codeSnippets.map((tab, index) => (
+    <div className="bg-[#020617] border border-border-bright rounded-xl overflow-hidden shadow-2xl relative group">
+      {/* SCANLINE OVERLAY */}
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%)] z-10 bg-[length:100%_4px] opacity-20" />
+      
+      <div className="flex bg-[#070E25] border-b border-border-bright p-1">
+        {snippets.map((file, idx) => (
           <button
-            key={tab.name}
-            className={`px-4 py-2.5 text-[11px] font-mono transition-colors border-r border-border-subtle ${activeTab === index ? 'text-text-primary bg-background border-b border-b-accent-primary' : 'text-text-secondary hover:text-text-primary'
-              }`}
-            onClick={() => setActiveTab(index)}
+            key={file.name}
+            onClick={() => setActiveTab(idx)}
+            className={`px-6 py-2 text-[10px] font-mono transition-all duration-300 border border-transparent rounded-lg ${
+              activeTab === idx 
+                ? 'bg-accent-primary/10 text-accent-primary border-accent-primary/20' 
+                : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
+            }`}
           >
-            {tab.name}
+            {file.name}
           </button>
         ))}
       </div>
-
-      {/* Content Area */}
-      <div
-        ref={scrollRef}
-        className="p-6 h-[400px] overflow-hidden"
-      >
-        <SyntaxHighlighter
-          code={displayText}
-          language={codeSnippets[activeTab].language}
-        />
+      
+      <div className="p-8 font-mono text-xs leading-relaxed overflow-x-auto min-h-[360px] bg-gradient-to-b from-transparent to-accent-primary/[0.02]">
+        <AnimatePresence mode="wait">
+          <motion.pre 
+            key={activeTab}
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -10 }}
+            className="text-slate-300"
+          >
+            <code className="block whitespace-pre-wrap">{snippets[activeTab].content}</code>
+          </motion.pre>
+        </AnimatePresence>
       </div>
-
-      {/* Status Bar */}
-      <div className="flex items-center justify-between px-4 py-2 bg-[#161b22] text-[10px] text-text-secondary font-mono border-t border-border-subtle">
-        <div className="flex items-center gap-4">
-          <span>LF</span>
-          <span>UTF-8</span>
-          <span>{codeSnippets[activeTab].language.toUpperCase()}</span>
+      
+      <div className="bg-[#070E25] border-t border-border-bright p-3 flex justify-between items-center px-6">
+        <div className="flex gap-6 items-center">
+          <div className="flex gap-2 items-center">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent-tertiary shadow-[0_0_8px_#10B981]" />
+            <span className="log-text uppercase">PROD_ENV_NODE_22</span>
+          </div>
+          <span className="log-text opacity-30 text-[9px]">LN: 124 COL: 42</span>
         </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-1.5 h-1.5 rounded-full bg-accent-secondary" />
-          <span>LOCKED</span>
+        <div className="flex items-center gap-4">
+           <span className="log-text text-accent-primary animate-pulse">LOCKED_SYNC</span>
+           <div className="h-4 w-[1px] bg-border-bright" />
+           <span className="log-text opacity-40">UTC-5</span>
         </div>
       </div>
     </div>
