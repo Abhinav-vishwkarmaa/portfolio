@@ -119,13 +119,13 @@ export default function Skills() {
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/25 text-red-400 text-xs font-semibold tracking-wider uppercase mb-4 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
             <Sparkles className="w-3.5 h-3.5 text-red-400 animate-pulse" />
-            <span>Interactive 3D Tech Orbit</span>
+            <span>Technical Ecosystem</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4 leading-tight">
-            Production Tech Stack <br />
+            Production Tech Stack &amp; <br />
             <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-400 to-amber-300">
-              In 3D Celestial Orbit
+              Core Architecture
             </span>
           </h2>
 
@@ -199,12 +199,6 @@ export default function Skills() {
             
             {/* 3D Sphere Interactive Canvas */}
             <div className="lg:col-span-8 relative flex items-center justify-center">
-              
-              {/* Interactive Help Hint Badge */}
-              <div className="absolute top-3 left-4 z-20 pointer-events-none flex items-center gap-2 px-3 py-1 rounded-full bg-slate-950/70 border border-white/10 text-[11px] text-slate-300 backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
-                <span>Drag to rotate in 3D • Click any icon to inspect</span>
-              </div>
 
               {/* Decorative Cybernetic Background Rings */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-40">

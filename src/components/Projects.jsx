@@ -228,10 +228,10 @@ export default function Projects() {
             <div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/25 text-red-400 text-xs font-semibold tracking-wider uppercase mb-2.5 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
                 <Compass className="w-3.5 h-3.5 text-orange-400 animate-spin-slow" />
-                <span>Interactive 3D Carousel</span>
+                <span>Featured Systems</span>
               </div>
               <h3 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-                All {allProjects.length} Applications &amp; Engineering Systems
+                All {allProjects.length} Applications &amp; <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-400 to-amber-300">Engineering Systems</span>
               </h3>
             </div>
 
@@ -266,17 +266,6 @@ export default function Projects() {
           {viewMode === 'carousel' && (
             <div className="relative mb-12">
               
-              {/* Interaction Hint Overlay */}
-              <div className="flex items-center justify-between px-2 mb-3 text-xs text-slate-400">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                  <span>Drag cards horizontally to glide in 3D • Click any card to inspect</span>
-                </div>
-                <div className="hidden sm:flex items-center gap-2 font-mono text-[11px] text-orange-400">
-                  <span>Smooth 3D Perspective Motion</span>
-                </div>
-              </div>
-
               {/* LiquidGlassCarousel Canvas Viewport - 100% Transparent Over Solar Wave Backdrop */}
               <div className="relative w-full h-[580px] sm:h-[620px] md:h-[660px] bg-transparent overflow-hidden cursor-grab active:cursor-grabbing">
                 <LiquidGlassCarousel
