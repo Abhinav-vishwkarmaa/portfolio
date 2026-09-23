@@ -1,19 +1,15 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   ExternalLink, 
-  ArrowRight, 
   Sparkles, 
   Grid, 
   Layers, 
   CheckCircle2, 
-  ChevronRight, 
-  Compass, 
-  SlidersHorizontal 
+  Compass 
 } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import { RESUME_DATA } from '../data/resumeData';
 import Tilt3DCard from './Tilt3DCard';
-import SmoothScrollSlider from './originkit/ui/smooth-scroll-slider';
 import LiquidGlassCarousel from './originkit/ui/liquid-glass-carousel';
 
 const PROJECT_CARDS_MAP = {
@@ -28,24 +24,6 @@ export default function Projects() {
   const { projects } = RESUME_DATA;
   const [viewMode, setViewMode] = useState('carousel'); // 'carousel' | 'grid'
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-  const gridSectionRef = useRef(null);
-
-  const sliderImages = useMemo(
-    () => projects.map((project) => ({ image: { src: project.image, alt: project.title }, offsetY: 0 })),
-    [projects]
-  );
-
-  const [slide, setSlide] = useState({ w: 720, h: 405 });
-
-  useEffect(() => {
-    const fit = () => {
-      const w = Math.max(300, Math.min(760, Math.round(window.innerWidth * 0.62)));
-      setSlide({ w, h: Math.round(w * 450 / 800) });
-    };
-    fit();
-    window.addEventListener('resize', fit);
-    return () => window.removeEventListener('resize', fit);
-  }, []);
 
   const allProjects = useMemo(() => projects, [projects]);
 
@@ -66,201 +44,71 @@ export default function Projects() {
     setActiveProjectIndex(idx % allProjects.length);
   };
 
-  const scrollToSection = () => {
-    gridSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <>
-      {/* ============================================================ */}
-      {/* SECTION 1: "Digital experiences" — Clean White Premium Zone   */}
-      {/* ============================================================ */}
-      {/* ============================================================ */}
-      {/* SECTION 1: "Digital experiences" — Clean White Premium Zone   */}
-      {/* ============================================================ */}
-      <section id="projects" className="relative pt-0 pb-0 bg-white overflow-hidden">
-        {/* Top Wave Transition: Dark to White */}
-        <div className="wave-top bg-[#080405] -mb-[1px]">
-          <svg
-            viewBox="0 0 1440 120"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            className="w-full"
-          >
-            <defs>
-              <linearGradient id="projWhiteRibbonBody" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="100%" stopColor="#f8fafc" />
-              </linearGradient>
+    <section id="projects" className="pt-24 pb-20 bg-[#080405] relative overflow-hidden scroll-mt-20">
+      {/* Luminous Solar Fluid Wave Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
+        <img
+          src="/images/hero-blue-tide.png"
+          alt="Luminous Solar Fluid Wave"
+          className="w-full h-full object-cover object-center opacity-75 mix-blend-screen filter hue-rotate-[165deg] saturate-[2] brightness-105"
+          style={{
+            transform: 'scaleY(-1) scaleX(1.1)',
+            maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, transparent 100%)',
+          }}
+        />
+      </div>
 
-              <linearGradient id="projSculptedFoldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#e2e8f0" stopOpacity="0.85" />
-                <stop offset="30%" stopColor="#f1f5f9" stopOpacity="0.95" />
-                <stop offset="70%" stopColor="#ffffff" stopOpacity="1" />
-                <stop offset="100%" stopColor="#e2e8f0" stopOpacity="0.5" />
-              </linearGradient>
+      <div className="absolute top-1/4 left-1/4 w-[550px] h-[550px] bg-red-500/12 rounded-full blur-[170px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-orange-600/12 rounded-full blur-[160px] pointer-events-none" />
 
-              <filter id="projWaveCreaseShadow" x="-10%" y="-10%" width="120%" height="120%">
-                <feDropShadow dx="0" dy="3" stdDeviation="4" floodColor="#94a3b8" floodOpacity="0.18" />
-              </filter>
-            </defs>
-
-            <path
-              d="M0,42 C180,68 360,18 640,28 C880,38 1120,65 1440,25 L1440,120 L0,120 Z"
-              fill="url(#projSculptedFoldGrad)"
-              opacity="0.6"
-            />
-            <path
-              d="M0,48 C200,75 420,24 680,32 C920,40 1160,70 1440,30 L1440,120 L0,120 Z"
-              fill="url(#projWhiteRibbonBody)"
-              filter="url(#projWaveCreaseShadow)"
-            />
-            <path
-              d="M0,48 C200,75 420,24 680,32 C920,40 1160,70 1440,30"
-              stroke="rgba(255, 255, 255, 0.9)"
-              strokeWidth="1.5"
-            />
-          </svg>
-        </div>
-
-        {/* Ambient background glows */}
-        <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-orange-100/40 rounded-full blur-[180px] pointer-events-none" />
-        <div className="absolute bottom-20 right-1/4 w-[400px] h-[400px] bg-red-100/35 rounded-full blur-[160px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-          <div className="max-w-xl pb-2">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-semibold tracking-wider uppercase mb-4">
-              <Sparkles className="w-3 h-3 text-red-500" />
-              <span>FEATURED PROJECTS</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Header & View Mode Switcher Bar */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pt-4">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/25 text-red-400 text-xs font-semibold tracking-wider uppercase mb-3 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+              <Compass className="w-3.5 h-3.5 text-orange-400 animate-spin-slow" />
+              <span>Featured Systems &amp; Case Studies</span>
             </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-5">
-              Digital experiences / <br />
-              that make an <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-500">impact.</span>
+            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-3">
+              All {allProjects.length} Applications &amp; <br className="hidden sm:inline" />
+              <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-400 to-amber-300">
+                Engineering Systems
+              </span>
             </h2>
-
-            <p className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed mb-8 max-w-md">
-              Each project is a unique story of clean architecture, real-time data persistence, and relentless attention to detail.
+            <p className="text-xs sm:text-sm text-slate-300 font-medium max-w-xl leading-relaxed">
+              Production-grade backend architectures, real-time CPA tracking, webhook reconciliation, and automated workflows.
             </p>
+          </div>
 
+          {/* View Mode Switcher */}
+          <div className="flex items-center p-1 rounded-2xl bg-slate-900/90 border border-white/10 text-xs font-bold text-slate-300 self-start md:self-auto shadow-lg">
             <button
-              onClick={scrollToSection}
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs font-extrabold tracking-wider uppercase text-white bg-slate-900 hover:bg-gradient-to-r hover:from-red-600 hover:to-orange-500 border border-slate-800 hover:border-red-500 shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_0_25px_rgba(239,68,68,0.4)] transition-all duration-300 group cursor-pointer select-none"
+              onClick={() => setViewMode('carousel')}
+              className={`px-3.5 py-2 rounded-xl transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+                viewMode === 'carousel'
+                  ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white font-black shadow-[0_0_15px_rgba(239,68,68,0.5)]'
+                  : 'hover:text-white'
+              }`}
             >
-              <span>Explore 3D Project Carousel</span>
-              <ArrowRight className="w-4 h-4 text-orange-400 group-hover:text-white group-hover:translate-x-1 transition-all" />
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>3D Carousel</span>
+            </button>
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`px-3.5 py-2 rounded-xl transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+                viewMode === 'grid'
+                  ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white font-black shadow-[0_0_15px_rgba(239,68,68,0.5)]'
+                  : 'hover:text-white'
+              }`}
+            >
+              <Grid className="w-3.5 h-3.5" />
+              <span>Card Grid</span>
             </button>
           </div>
         </div>
-
-        <div className="relative z-10 mt-8 mb-6 w-full">
-          <div
-            className="relative overflow-hidden bg-[#0a0507]"
-            style={{ height: slide.h + 88 }}
-          >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.22),transparent_62%)]" />
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-14 bg-gradient-to-b from-white to-transparent" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-14 bg-gradient-to-t from-white to-transparent" />
-            <SmoothScrollSlider
-              images={sliderImages}
-              slideWidth={slide.w}
-              slideHeight={slide.h}
-              spacing={2}
-              direction="right"
-              smoothness={8}
-              radius={20}
-              dim={0}
-              background="transparent"
-              sensitivity={4}
-              loop
-            />
-          </div>
-        </div>
-
-        {/* Bottom Wave Transition: White to Dark */}
-        <div className="wave-bottom bg-[#080405] -mt-[1px]">
-          <svg
-            viewBox="0 0 1440 120"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            className="w-full"
-          >
-            <path
-              d="M0,0 L1440,0 L1440,68 C1240,32 1020,18 780,24 C520,30 260,82 0,22 Z"
-              fill="url(#projSculptedFoldGrad)"
-              opacity="0.5"
-            />
-            <path
-              d="M0,0 L1440,0 L1440,75 C1220,38 980,22 740,28 C480,34 240,85 0,18 Z"
-              fill="url(#projWhiteRibbonBody)"
-            />
-          </svg>
-        </div>
-      </section>
-
-      {/* ============================================================ */}
-      {/* SECTION 2: Liquid Glass Carousel & Complete Projects Suite    */}
-      {/* ============================================================ */}
-      <section ref={gridSectionRef} className="pt-28 pb-24 bg-[#080405] relative overflow-hidden scroll-mt-20">
-        {/* Luminous Solar Fluid Wave Background */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
-          <img
-            src="/images/hero-blue-tide.png"
-            alt="Luminous Solar Fluid Wave"
-            className="w-full h-full object-cover object-center opacity-75 mix-blend-screen filter hue-rotate-[165deg] saturate-[2] brightness-105"
-            style={{
-              transform: 'scaleY(-1) scaleX(1.1)',
-              maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, transparent 100%)',
-            }}
-          />
-        </div>
-
-        <div className="absolute top-1/4 left-1/4 w-[550px] h-[550px] bg-red-500/12 rounded-full blur-[170px] pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-orange-600/12 rounded-full blur-[160px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          {/* Header & Filter Controls Bar */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pt-4">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/25 text-red-400 text-xs font-semibold tracking-wider uppercase mb-2.5 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
-                <Compass className="w-3.5 h-3.5 text-orange-400 animate-spin-slow" />
-                <span>Featured Systems</span>
-              </div>
-              <h3 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-                All {allProjects.length} Applications &amp; <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-400 to-amber-300">Engineering Systems</span>
-              </h3>
-            </div>
-
-            {/* View Mode Toggle */}
-            <div className="flex items-center p-1 rounded-2xl bg-slate-900/90 border border-white/10 text-xs font-bold text-slate-300">
-              <button
-                onClick={() => setViewMode('carousel')}
-                className={`px-3 py-1.5 rounded-xl transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
-                  viewMode === 'carousel'
-                    ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white font-black shadow-[0_0_15px_rgba(239,68,68,0.5)]'
-                    : 'hover:text-white'
-                }`}
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>3D Carousel</span>
-              </button>
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`px-3 py-1.5 rounded-xl transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
-                  viewMode === 'grid'
-                    ? 'bg-gradient-to-r from-red-600 to-orange-500 text-white font-black shadow-[0_0_15px_rgba(239,68,68,0.5)]'
-                    : 'hover:text-white'
-                }`}
-              >
-                <Grid className="w-3.5 h-3.5" />
-                <span>Card Grid</span>
-              </button>
-            </div>
-          </div>
 
           {/* VIEW MODE 1: 3D Project Carousel (Normal straight cards, zero curve distortion) */}
           {viewMode === 'carousel' && (
@@ -509,6 +357,5 @@ export default function Projects() {
 
         </div>
       </section>
-    </>
   );
 }
