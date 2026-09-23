@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 1080" width="740" height="1080">
+  <defs>
+    <linearGradient id="cardBg_ecommerce-backend" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1122"/>
+      <stop offset="60%" stop-color="#050812"/>
+      <stop offset="100%" stop-color="#020408"/>
+    </linearGradient>
+
+    <linearGradient id="cardBorder_ecommerce-backend" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.85"/>
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#1e293b" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <linearGradient id="bottomFade_ecommerce-backend" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#050812" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#050812" stop-opacity="0.95"/>
+    </linearGradient>
+    
+    <clipPath id="previewClip_ecommerce-backend">
+      <rect x="34" y="34" width="672" height="445" rx="24" />
+    </clipPath>
+  </defs>
+
+  <!-- Outer Glass Frame -->
+  <rect x="12" y="12" width="716" height="1056" rx="36" fill="url(#cardBg_ecommerce-backend)" stroke="url(#cardBorder_ecommerce-backend)" stroke-width="3"/>
+  <rect x="18" y="18" width="704" height="1044" rx="30" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1.5"/>
+
+  <!-- Top Mockup Device Showcase -->
+  <g clip-path="url(#previewClip_ecommerce-backend)">
+    <rect x="34" y="34" width="672" height="445" fill="#070b16"/>
+    <!-- Embedded Mockup Illustration scaled to 672x445 -->
+    <g transform="translate(34, 34) scale(0.84, 0.988)">
+      
+  <defs>
+    <linearGradient id="finBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050a14"/>
+      <stop offset="100%" stop-color="#0c1524"/>
+    </linearGradient>
+    <linearGradient id="chartCyan" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#finBg)"/>
+
+  <!-- Top Bar -->
+  <rect width="800" height="45" fill="#04070e"/>
+  <circle cx="30" cy="22" r="8" fill="#10b981"/>
+  <text x="50" y="27" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="bold">SpendWise Analytics</text>
+  <rect x="670" y="10" width="100" height="26" rx="13" fill="#1e293b"/>
+  <text x="720" y="27" fill="#38bdf8" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">+ Add Expense</text>
+
+  <!-- Metric 1: Total Balance -->
+  <rect x="30" y="65" width="230" height="85" rx="12" fill="#0c1527" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="50" y="90" fill="#94a3b8" font-family="sans-serif" font-size="11">TOTAL NET BALANCE</text>
+  <text x="50" y="125" fill="#ffffff" font-family="sans-serif" font-size="24" font-weight="900">$24,870.50</text>
+  <text x="195" y="125" fill="#10b981" font-family="sans-serif" font-size="11" font-weight="bold">+12.4%</text>
+
+  <!-- Metric 2: Monthly Expenses -->
+  <rect x="285" y="65" width="230" height="85" rx="12" fill="#0c1527" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="305" y="90" fill="#94a3b8" font-family="sans-serif" font-size="11">MONTHLY SPEND</text>
+  <text x="305" y="125" fill="#f43f5e" font-family="sans-serif" font-size="24" font-weight="900">$3,420.00</text>
+  <text x="450" y="125" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="bold">Under Budget</text>
+
+  <!-- Metric 3: Savings Target -->
+  <rect x="540" y="65" width="230" height="85" rx="12" fill="#0c1527" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="560" y="90" fill="#94a3b8" font-family="sans-serif" font-size="11">SAVINGS GOAL (84%)</text>
+  <text x="560" y="125" fill="#38bdf8" font-family="sans-serif" font-size="24" font-weight="900">$18,500.00</text>
+  
+  <!-- Left: Interactive Cashflow Chart -->
+  <rect x="30" y="170" width="485" height="255" rx="12" fill="#0a1222" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="50" y="200" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">Cashflow &amp; Trend Forecast</text>
+  
+  <!-- Area Chart Wave -->
+  <path d="M50,370 Q130,290 200,320 T350,260 T480,240 L480,390 L50,390 Z" fill="url(#chartCyan)"/>
+  <path d="M50,370 Q130,290 200,320 T350,260 T480,240" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <circle cx="350" cy="260" r="5" fill="#38bdf8"/>
+  <rect x="315" y="225" width="70" height="24" rx="6" fill="#04070e" stroke="#38bdf8" stroke-width="1"/>
+  <text x="350" y="241" fill="#ffffff" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">$4,850</text>
+
+  <!-- Right: Recent Transactions List -->
+  <rect x="540" y="170" width="230" height="255" rx="12" fill="#0a1222" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="560" y="200" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">Recent Ledger</text>
+
+  <!-- Transaction 1 -->
+  <rect x="555" y="220" width="200" height="42" rx="8" fill="#101a2f"/>
+  <circle cx="575" cy="241" r="10" fill="#0284c7"/>
+  <text x="595" y="238" fill="#f8fafc" font-family="sans-serif" font-size="10" font-weight="bold">Cloud Servers</text>
+  <text x="595" y="252" fill="#64748b" font-family="sans-serif" font-size="8">DevOps &amp; Infra</text>
+  <text x="740" y="245" fill="#f43f5e" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="end">-$145.00</text>
+
+  <!-- Transaction 2 -->
+  <rect x="555" y="272" width="200" height="42" rx="8" fill="#101a2f"/>
+  <circle cx="575" cy="293" r="10" fill="#059669"/>
+  <text x="595" y="290" fill="#f8fafc" font-family="sans-serif" font-size="10" font-weight="bold">SaaS Dividend</text>
+  <text x="595" y="304" fill="#64748b" font-family="sans-serif" font-size="8">Passive Income</text>
+  <text x="740" y="297" fill="#10b981" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="end">+$1,280.00</text>
+
+  <!-- Transaction 3 -->
+  <rect x="555" y="324" width="200" height="42" rx="8" fill="#101a2f"/>
+  <circle cx="575" cy="345" r="10" fill="#7c3aed"/>
+  <text x="595" y="342" fill="#f8fafc" font-family="sans-serif" font-size="10" font-weight="bold">Office Workstation</text>
+  <text x="595" y="356" fill="#64748b" font-family="sans-serif" font-size="8">Hardware Setup</text>
+  <text x="740" y="349" fill="#f43f5e" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="end">-$890.00</text>
+
+    </g>
+    <!-- Vignette / bottom shadow over graphic -->
+    <rect x="34" y="300" width="672" height="180" fill="url(#bottomFade_ecommerce-backend)"/>
+  </g>
+
+  <!-- Device Notch / Dynamic Island -->
+  <rect x="306" y="46" width="128" height="24" rx="12" fill="#030509" fill-opacity="0.95" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+  <circle cx="326" cy="58" r="4.5" fill="#38bdf8"/>
+  <circle cx="346" cy="58" r="3" fill="#475569"/>
+
+  <!-- Category Badge at Bottom-Left of Preview -->
+  <rect x="50" y="426" width="176.5" height="34" rx="17" fill="#030509" fill-opacity="0.94" stroke="#f59e0b" stroke-opacity="0.8" stroke-width="1.5"/>
+  <text x="138.25" y="448" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#38bdf8" letter-spacing="1.5" text-anchor="middle">PAYMENTS &amp; ORDERS</text>
+
+  <!-- Flagship Star Badge at Bottom-Right of Preview -->
+  <rect x="554" y="426" width="136" height="34" rx="17" fill="#f59e0b" fill-opacity="0.2" stroke="#f59e0b" stroke-opacity="0.85" stroke-width="1.5"/>
+  <text x="622" y="448" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#fbbf24" letter-spacing="1" text-anchor="middle">★ FLAGSHIP</text>
+
+  <!-- Project Title (Bold 32px) -->
+  <text x="50" y="540" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="900" fill="#ffffff" letter-spacing="-0.5">E-Commerce Backend</text>
+  <text x="50" y="580" font-family="system-ui, -apple-system, sans-serif" font-size="30" font-weight="800" fill="#f59e0b" letter-spacing="-0.5">Payments &amp; Order Processing</text>
+
+  <!-- Description (20px Slate-200) -->
+  <text x="50" y="640" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#cbd5e1">Production e-commerce backend APIs for catalog, carts, inventory,</text>
+  <text x="50" y="675" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#cbd5e1">and checkout with Razorpay webhook payment reconciliation and</text>
+  <text x="50" y="710" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#94a3b8">idempotent transaction processing with automated retries.</text>
+
+  <!-- Tech Stack Pills Row -->
+  
+      <rect x="50" y="780" width="105" height="38" rx="19" fill="#071224" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1.5"/>
+      <text x="102.5" y="804" font-family="monospace" font-size="16" font-weight="bold" fill="#7dd3fc" text-anchor="middle">Node.js</text>
+    
+      <rect x="167" y="780" width="138" height="38" rx="19" fill="#071224" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1.5"/>
+      <text x="236" y="804" font-family="monospace" font-size="16" font-weight="bold" fill="#7dd3fc" text-anchor="middle">Express.js</text>
+    
+      <rect x="317" y="780" width="83" height="38" rx="19" fill="#071224" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1.5"/>
+      <text x="358.5" y="804" font-family="monospace" font-size="16" font-weight="bold" fill="#7dd3fc" text-anchor="middle">MySQL</text>
+    
+      <rect x="412" y="780" width="116" height="38" rx="19" fill="#071224" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1.5"/>
+      <text x="470" y="804" font-family="monospace" font-size="16" font-weight="bold" fill="#7dd3fc" text-anchor="middle">Razorpay</text>
+    
+
+  <!-- Lower Action Button Showcase -->
+  <g transform="translate(50, 870)">
+    <!-- Live Demo Button -->
+    <rect x="0" y="0" width="180" height="52" rx="26" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="90" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="800" fill="#ffffff" text-anchor="middle">⚡ Live Demo ↗</text>
+
+    <!-- Source Code Button -->
+    <rect x="196" y="0" width="180" height="52" rx="26" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <text x="286" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#e2e8f0" text-anchor="middle">🐙 Source Code ↗</text>
+
+    <!-- Year & Architecture Tag -->
+    <text x="635" y="33" font-family="monospace" font-size="17" font-weight="bold" fill="#38bdf8" text-anchor="end">Backend • 2025</text>
+  </g>
+</svg>

@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 1080" width="740" height="1080">
+  <defs>
+    <linearGradient id="cardBg_affiliate-network" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1122"/>
+      <stop offset="60%" stop-color="#050812"/>
+      <stop offset="100%" stop-color="#020408"/>
+    </linearGradient>
+
+    <linearGradient id="cardBorder_affiliate-network" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.85"/>
+      <stop offset="40%" stop-color="#38bdf8" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#1e293b" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <linearGradient id="bottomFade_affiliate-network" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#050812" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#050812" stop-opacity="0.95"/>
+    </linearGradient>
+    
+    <clipPath id="previewClip_affiliate-network">
+      <rect x="34" y="34" width="672" height="445" rx="24" />
+    </clipPath>
+  </defs>
+
+  <!-- Outer Glass Frame -->
+  <rect x="12" y="12" width="716" height="1056" rx="36" fill="url(#cardBg_affiliate-network)" stroke="url(#cardBorder_affiliate-network)" stroke-width="3"/>
+  <rect x="18" y="18" width="704" height="1044" rx="30" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1.5"/>
+
+  <!-- Top Mockup Device Showcase -->
+  <g clip-path="url(#previewClip_affiliate-network)">
+    <rect x="34" y="34" width="672" height="445" fill="#070b16"/>
+    <!-- Embedded Mockup Illustration scaled to 672x445 -->
+    <g transform="translate(34, 34) scale(0.84, 0.988)">
+      
+  <defs>
+    <linearGradient id="ragBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050a14"/>
+      <stop offset="100%" stop-color="#0c1626"/>
+    </linearGradient>
+    <linearGradient id="purpleCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="50%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#ragBg)"/>
+
+  <!-- Header -->
+  <rect width="800" height="45" fill="#04070e"/>
+  <circle cx="30" cy="22" r="8" fill="#a855f7"/>
+  <circle cx="30" cy="22" r="4" fill="#ffffff"/>
+  <text x="50" y="27" fill="#ffffff" font-family="sans-serif" font-size="14" font-weight="bold">DOCUQUERY AI</text>
+  <rect x="180" y="12" width="140" height="22" rx="11" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+  <text x="250" y="27" fill="#a5b4fc" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">⚡ RAG PIPELINE ACTIVE</text>
+
+  <!-- Left: Document Ingestion & Vector DB -->
+  <rect x="30" y="70" width="220" height="350" rx="14" fill="#09101f" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="45" y="100" fill="#38bdf8" font-family="sans-serif" font-size="12" font-weight="bold">KNOWLEDGE BASES</text>
+
+  <!-- Document Card 1 -->
+  <rect x="45" y="115" width="190" height="60" rx="8" fill="#101a2f" stroke="#38bdf8" stroke-width="1"/>
+  <text x="60" y="140" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="bold">📄 Technical_Spec_v3.pdf</text>
+  <text x="60" y="160" fill="#38bdf8" font-family="sans-serif" font-size="9">Indexed • 1,420 Chunks</text>
+
+  <!-- Document Card 2 -->
+  <rect x="45" y="185" width="190" height="60" rx="8" fill="#0d1526"/>
+  <text x="60" y="210" fill="#f8fafc" font-family="sans-serif" font-size="11" font-weight="bold">📄 API_Architecture.md</text>
+  <text x="60" y="230" fill="#94a3b8" font-family="sans-serif" font-size="9">Indexed • 840 Chunks</text>
+
+  <!-- Vector Dimension Visualizer -->
+  <rect x="45" y="260" width="190" height="140" rx="8" fill="#070c18" stroke="#334155" stroke-width="1"/>
+  <text x="55" y="282" fill="#a855f7" font-family="sans-serif" font-size="10" font-weight="bold">HIGH-DIM VECTOR SPACE</text>
+  <!-- Vector Nodes & Connections -->
+  <line x1="70" y1="330" x2="110" y2="310" stroke="#6366f1" stroke-width="1.5"/>
+  <line x1="110" y1="310" x2="160" y2="340" stroke="#38bdf8" stroke-width="1.5"/>
+  <line x1="110" y1="310" x2="140" y2="380" stroke="#a855f7" stroke-width="1.5"/>
+  <line x1="160" y1="340" x2="200" y2="320" stroke="#38bdf8" stroke-width="1.5"/>
+  <circle cx="70" cy="330" r="5" fill="#a855f7"/>
+  <circle cx="110" cy="310" r="7" fill="#6366f1"/>
+  <circle cx="160" cy="340" r="6" fill="#38bdf8"/>
+  <circle cx="140" cy="380" r="4" fill="#38bdf8"/>
+  <circle cx="200" cy="320" r="5" fill="#6366f1"/>
+
+  <!-- Right: Conversational Query Stream -->
+  <rect x="270" y="70" width="500" height="350" rx="14" fill="#09101f" stroke="#1e293b" stroke-width="1.5"/>
+  
+  <!-- Chat Bubble 1: User Query -->
+  <rect x="290" y="95" width="460" height="55" rx="10" fill="#141f36"/>
+  <text x="310" y="118" fill="#38bdf8" font-family="sans-serif" font-size="10" font-weight="bold">USER QUERY</text>
+  <text x="310" y="137" fill="#f8fafc" font-family="sans-serif" font-size="12">"How does the caching layer handle distributed cache invalidation?"</text>
+
+  <!-- Chat Bubble 2: AI RAG Response -->
+  <rect x="290" y="165" width="460" height="175" rx="10" fill="#0d172a" stroke="#6366f1" stroke-width="1"/>
+  <circle cx="315" cy="190" r="10" fill="url(#purpleCyan)"/>
+  <text x="335" y="195" fill="#a855f7" font-family="sans-serif" font-size="11" font-weight="bold">RAG SYNTHESIZER (Cosine Match: 0.94)</text>
+  
+  <text x="310" y="225" fill="#cbd5e1" font-family="sans-serif" font-size="11">According to <tspan fill="#38bdf8" font-weight="bold">[Technical_Spec_v3.pdf § 4.2]</tspan>:</text>
+  <text x="310" y="248" fill="#f8fafc" font-family="sans-serif" font-size="11">Redis Pub/Sub sends invalidation messages across clusters upon write,</text>
+  <text x="310" y="268" fill="#f8fafc" font-family="sans-serif" font-size="11">with TTL fallbacks guaranteeing sub-10ms cache coherency.</text>
+
+  <!-- Citation Chips -->
+  <rect x="310" y="295" width="130" height="26" rx="13" fill="#1e1b4b" stroke="#6366f1" stroke-width="1"/>
+  <text x="375" y="312" fill="#a5b4fc" font-family="sans-serif" font-size="9" text-anchor="middle">Source 1: Page 18, Para 3</text>
+  <rect x="450" y="295" width="130" height="26" rx="13" fill="#0c1d38" stroke="#38bdf8" stroke-width="1"/>
+  <text x="515" y="312" fill="#7dd3fc" font-family="sans-serif" font-size="9" text-anchor="middle">Source 2: Architecture § 2</text>
+
+  <!-- Prompt Input Bar -->
+  <rect x="290" y="355" width="460" height="45" rx="22" fill="#070c18" stroke="#334155" stroke-width="1"/>
+  <text x="315" y="382" fill="#64748b" font-family="sans-serif" font-size="11">Ask any question across 2.2k embedded documents...</text>
+  <circle cx="725" cy="377" r="14" fill="url(#purpleCyan)"/>
+  <text x="725" y="381" fill="#ffffff" font-family="sans-serif" font-size="12" text-anchor="middle">↑</text>
+
+    </g>
+    <!-- Vignette / bottom shadow over graphic -->
+    <rect x="34" y="300" width="672" height="180" fill="url(#bottomFade_affiliate-network)"/>
+  </g>
+
+  <!-- Device Notch / Dynamic Island -->
+  <rect x="306" y="46" width="128" height="24" rx="12" fill="#030509" fill-opacity="0.95" stroke="#ffffff" stroke-opacity="0.1" stroke-width="1"/>
+  <circle cx="326" cy="58" r="4.5" fill="#38bdf8"/>
+  <circle cx="346" cy="58" r="3" fill="#475569"/>
+
+  <!-- Category Badge at Bottom-Left of Preview -->
+  <rect x="50" y="426" width="185" height="34" rx="17" fill="#030509" fill-opacity="0.94" stroke="#38bdf8" stroke-opacity="0.8" stroke-width="1.5"/>
+  <text x="142.5" y="448" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#38bdf8" letter-spacing="1.5" text-anchor="middle">AFFILIATE TRACKING</text>
+
+  <!-- Flagship Star Badge at Bottom-Right of Preview -->
+  <rect x="554" y="426" width="136" height="34" rx="17" fill="#f59e0b" fill-opacity="0.2" stroke="#f59e0b" stroke-opacity="0.85" stroke-width="1.5"/>
+  <text x="622" y="448" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800" fill="#fbbf24" letter-spacing="1" text-anchor="middle">★ FLAGSHIP</text>
+
+  <!-- Project Title (Bold 32px) -->
+  <text x="50" y="540" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="900" fill="#ffffff" letter-spacing="-0.5">Affiliate Network</text>
+  <text x="50" y="580" font-family="system-ui, -apple-system, sans-serif" font-size="30" font-weight="800" fill="#38bdf8" letter-spacing="-0.5">Self-Serve CPA Platform</text>
+
+  <!-- Description (20px Slate-200) -->
+  <text x="50" y="640" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#cbd5e1">Self-service affiliate marketing network where advertisers fund</text>
+  <text x="50" y="675" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#cbd5e1">wallets and publish offers, and affiliates track click conversions</text>
+  <text x="50" y="710" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#94a3b8">with sub parameters and high-volume Redis background workers.</text>
+
+  <!-- Tech Stack Pills Row -->
+  
+      <rect x="50" y="780" width="94" height="38" rx="19" fill="#071224" stroke="#38bdf8" stroke-opacity="0.4" stroke-width="1.5"/>
+      <text x="97" y="804" font-family="monospace" font-size="16" font-weight="bold" fill="#7dd3fc" text-anchor="middle">NestJS</text>
+    
+      <rect x="156" y="780" width="105" height="38" rx="19" fill="#071224" stroke="#38bdf8" stroke-opacity="0.4" stroke-width="1.5"/>
+      <text x="208.5" y="804" font-family="monospace" font-size="16" font-weight="bold" fill="#7dd3fc" text-anchor="middle">Fastify</text>
+    
+      <rect x="273" y="780" width="138" height="38" rx="19" fill="#071224" stroke="#38bdf8" stroke-opacity="0.4" stroke-width="1.5"/>
+      <text x="342" y="804" font-family="monospace" font-size="16" font-weight="bold" fill="#7dd3fc" text-anchor="middle">PostgreSQL</text>
+    
+      <rect x="423" y="780" width="83" height="38" rx="19" fill="#071224" stroke="#38bdf8" stroke-opacity="0.4" stroke-width="1.5"/>
+      <text x="464.5" y="804" font-family="monospace" font-size="16" font-weight="bold" fill="#7dd3fc" text-anchor="middle">Redis</text>
+    
+
+  <!-- Lower Action Button Showcase -->
+  <g transform="translate(50, 870)">
+    <!-- Live Demo Button -->
+    <rect x="0" y="0" width="180" height="52" rx="26" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="90" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="800" fill="#ffffff" text-anchor="middle">⚡ Live Demo ↗</text>
+
+    <!-- Source Code Button -->
+    <rect x="196" y="0" width="180" height="52" rx="26" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <text x="286" y="33" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#e2e8f0" text-anchor="middle">🐙 Source Code ↗</text>
+
+    <!-- Year & Architecture Tag -->
+    <text x="635" y="33" font-family="monospace" font-size="17" font-weight="bold" fill="#38bdf8" text-anchor="end">Backend • 2026</text>
+  </g>
+</svg>
