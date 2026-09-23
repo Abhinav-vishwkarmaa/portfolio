@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Zap } from 'lucide-react';
-import WireTerrain from '../../../components/originkit/ui/wire-terrain';
+import WireTerrain from './originkit/ui/wire-terrain';
 
 export default function Hero() {
 
