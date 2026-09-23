@@ -594,7 +594,7 @@ function makeParams(p: LiquidGlassCarouselProps) {
 
         entry: {
             enabled: e.enabled !== false,
-            delay: et.delay >= 0 ? et.delay : 0.5 * ts,
+            delay: et.delay >= 0 ? et.delay : 0.06 * ts,
             startH: 80,
             riseDuration: et.duration,
             ease: et.ease,
@@ -603,11 +603,11 @@ function makeParams(p: LiquidGlassCarouselProps) {
 
             pattern:
                 ENTRY_PATTERNS[e.enterFrom ?? "bottom"] ?? ENTRY_PATTERNS.bottom,
-            growDelay: 0.25 * ts,
-            growDuration: 2.15 * ts,
+            growDelay: 0.1 * ts,
+            growDuration: 1.8 * ts,
             growStagger: 0.085 * ts,
             outward: false,
-            lensBloom: 1.4 * ts,
+            lensBloom: 1.2 * ts,
         },
 
         lens: {
@@ -1931,13 +1931,38 @@ export default function LiquidGlassCarousel(props: LiquidGlassCarouselProps) {
         )
     }, [items])
 
-    const entryArmed = useRef(false)
     useEffect(() => {
-        if (!entryArmed.current) {
-            entryArmed.current = true
-            return
+        const el = containerRef.current
+        if (!el) return
+
+        let wasIntersecting = false
+        let timer: any = null
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    if (!wasIntersecting) {
+                        wasIntersecting = true
+                        clearTimeout(timer)
+                        timer = setTimeout(() => {
+                            if (props.entry?.enabled !== false) {
+                                engineRef.current?.replayEntry()
+                            }
+                        }, 50)
+                    }
+                } else {
+                    wasIntersecting = false
+                    clearTimeout(timer)
+                }
+            },
+            { threshold: 0.12 }
+        )
+
+        observer.observe(el)
+        return () => {
+            clearTimeout(timer)
+            observer.disconnect()
         }
-        if (props.entry?.enabled !== false) engineRef.current?.replayEntry()
     }, [props.entry?.enabled])
 
     useEffect(() => {
